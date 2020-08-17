@@ -1,0 +1,23 @@
+/*
+Possible GLobal variables
+player name
+money
+
+Eventlistener for start game function
+
+function to prompt for number of players
+
+function to assign player names
+
+function to check owner of current square
+
+function to prompt purchase of property
+
+function to minus earnings
+
+event listener for dice
+
+function to move tiles based on die roll
+
+function to pay out when landing on start tile
+ */
