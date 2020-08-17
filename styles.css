@@ -14,7 +14,6 @@
 #blank1, #blank2, #blank3, #blank4, #cellturn, #lastturn, #currentstanding{
     background-color:white;
 
-.game_status{
+/*.game_status{*/
     /*display:inline-block;*/
-}
-
+/*}*/
