@@ -81,5 +81,3 @@ for (f=0; f<2;f++) {
     roll();
 console.log(players[0],players[1])
 }
-
-}
