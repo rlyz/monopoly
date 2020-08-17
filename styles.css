@@ -1,0 +1,20 @@
+.rows{
+    display: flex;
+    width: 1100px;
+    height:220px;
+    justify-content: space-evenly;
+    }
+
+.board_square{
+    /*display:inline-block;*/
+    width:200px;
+    height:200px;
+    background-color:skyblue;
+}
+#blank1, #blank2, #blank3, #blank4, #cellturn, #lastturn, #currentstanding{
+    background-color:white;
+
+.game_status{
+    /*display:inline-block;*/
+}
+.cell_turn{}
