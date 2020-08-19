@@ -55,14 +55,14 @@ let p2 = players[1][0]
 let k = [p1, p2]
 let currentOccupants = ['',''];
 let displayOccupants = currentOccupants.join;
+let squareAll = [square2, square3, square4, square5, square6, square7, square8, square9, square10, square11, square12];
 
-// place in an array for ease of access
-let squareAll = [square2,square3,square4,square5,square6,square7,square8,square9,square10,square11,square12];
+//function to fill the board with all the rent, tile names etc
 var fillBoard = function(){
     for(let g=0;g<11;g++){
         var a = g + 2
         document.getElementById('square' + a + '_name').innerHTML = squareAll[g][0];
-        document.getElementById('square' + a + '_value').innerHTML = squareAll[g][1];
+        document.getElementById('square' + a + '_value').innerHTML = "$"+squareAll[g][1];
         document.getElementById('p1').innerHTML = "Player 1 $" + player1[1];
         document.getElementById('p2').innerHTML = "Player 2: $" + player2[1];
     }
@@ -70,6 +70,7 @@ var fillBoard = function(){
 
 fillBoard();
 
+//function to start the game putting players 1 and 2 in the start tile
 var start = function () {
     document.getElementById('square1_residents').innerHTML = k;
 }
@@ -78,48 +79,6 @@ document.getElementById('currentPlayer').innerHTML = player1[0]
 var d = document.getElementById('start');
 
 d.addEventListener('click', start, { once: true })
-
-var reset = function(){
-    d.removeEventListener('click',start);
-    d.addEventListener('click',start,{once:true});
-
-var player1 = ["player1",1000,property1,0,1];
-var player2 = ["player2",1000,property2,1,1];
-var players = [player1,player2];
-
-var p1 = players[0][0];
-var p2 = players[1][0];
-var k = [p1, p2];
-
-
-    document.getElementById('currentPlayer').innerHTML = player1[0];
-
-for (i=0;i<12;i++){
-var immediateSquare = document.getElementById('square' + [i+1] + '_residents');
-immediateSquare.innerHTML = "";
-}
-
-let square2 = ['Mediterranean Avenue', 60, 2, null, null];
-let square3 = ['Baltic Avenue', 60, 4, null, null];
-let square4 = ["Oriental Avenue", 100, 6, null, null];
-let square5 = ["Vermont Avenue", 100, 6, null, null ];
-let square6 = ["Connecticut Avenue", 120, 8, null, null];
-let square7 = ["St. Charles Place", 140, 10, null, null];
-let square8 = ["States Avenue", 140, 10, null, null];
-let square9 = ["Virginia Avenue", 160, 12, null, null];
-let square10 = ["St. James Place", 180, 14, null, null];
-let square11 = ["Tennessee Avenue", 180, 14, null, null];
-let square12 = ["New York Avenue", 200, 16, null, null];
-
-
-
-
-}
-
-
-
-
-document.getElementById('reset').addEventListener('click',reset);
 
 // Maps location to new Tile and removes from old tile
 var movePlayerTile = function () {
@@ -141,7 +100,7 @@ var movePlayerTile = function () {
             for (g = 0; g < p.length; g++) {
                 p[g] = "";
             }
-            /*console.log(p)*/
+        
             p[i] = "player" + [i + 1]
             nextSquare = document.getElementById('square' + players[i][4] + '_residents')
             if (nextSquare.innerHTML !== "") {
@@ -152,7 +111,7 @@ var movePlayerTile = function () {
             combine = "square" + players[i][4];
             nextSquareProperty = eval(combine);
             if (nextSquareProperty[3] === null) {
-                if (confirm("FOR SALE @ $" + nextSquareProperty[1] + " BUYING OR NOT ???")) {
+                if (confirm("The Dice rolls either 1 or 2. You rolled " + move + " and landed on " + nextSquareProperty[0] + ". It is for sale @ $" + nextSquareProperty[1] + " Do you want to purchase it?")) {
                     players[i][1] -= nextSquareProperty[1];
                     nextSquareProperty[3] = i;
                 }
@@ -163,7 +122,7 @@ var movePlayerTile = function () {
                 rent = nextSquareProperty[1] * 0.8;
                 players[i][1] -= rent;
                 players[i+1][1] += rent
-                alert("You Paid $"+rent+" in rent sucker!")
+                alert("You rolled "+ move + " and landed on " +nextSquareProperty[0] + ". It is owned by Player 2 and you paid $"+rent+ " in rent.")
             }
 
 
@@ -201,18 +160,12 @@ var movePlayerTile = function () {
                 nextSquare.innerHTML += ",player" + [i + 1]
             } else { nextSquare.innerHTML = [p.join("")] }
 
-            nextSquareProperty = "square" + players[i][4]
-            if (nextSquareProperty[3] === null) {
-                if (confirm("FOR SALE @ $" + nextSquareProperty[1] + " BUYING OR NOT ???")) {
-                    players[i][1] -= nextSquareProperty[1];
-                }
 
-            }
 
             combine = "square" + players[i][4];
             nextSquareProperty = eval(combine);
             if (nextSquareProperty[3] === null) {
-                if (confirm("FOR SALE @ $" + nextSquareProperty[1] + " BUYING OR NOT ???")) {
+                if (confirm("The Dice rolls either 1 or 2. You rolled " + move + " and landed on " + nextSquareProperty[0] + ". It is for sale @ $" + nextSquareProperty[1] + " Do you want to purchase it?")) {
                     players[i][1] -= nextSquareProperty[1];
                     nextSquareProperty[3] = i;
                 }
@@ -223,7 +176,7 @@ var movePlayerTile = function () {
                 rent = nextSquareProperty[1] * 0.8
                 players[i][1] -= rent
                 players[i-1][1] += rent
-                alert("You Paid $" + rent + " in rent sucker!")
+                alert("You rolled " + move + " and landed on " + nextSquareProperty[0] + ". It is owned by Player 1 and you paid $" + rent + " in rent.")
             }
 
 
@@ -233,7 +186,7 @@ var movePlayerTile = function () {
                 alert("Sorry " + "player"+(i+1) + ", you lose!");
             }
             i--;
-            document.getElementById('p1').innerHTML = "Player 1 $" + player1[1];
+            document.getElementById('p1').innerHTML = "Player 1: $" + player1[1];
             document.getElementById('p2').innerHTML = "Player 2: $" + player2[1];
             break;
       }
@@ -241,7 +194,7 @@ var movePlayerTile = function () {
 }
 
 
-
+//roll function that calculates the dice roll and adds it to the players stored position
 var roll = function () {
     move = Math.ceil(Math.random() * 2);
     console.log(move + "move");
@@ -259,4 +212,38 @@ var roll = function () {
 var n = document.getElementById('roll');
 document.getElementById('roll').addEventListener('click', movePlayerTile);
 
+
+//Reset function that reassigns all initial variables and states
+var reset = function () {
+    d.removeEventListener('click', start);
+    d.addEventListener('click', start, { once: true });
+
+    var player1 = ["player1", 1000, property1, 0, 1];
+    var player2 = ["player2", 1000, property2, 1, 1];
+    var players = [player1, player2];
+
+    var p1 = players[0][0];
+    var p2 = players[1][0];
+    var k = [p1, p2];
+
+
+    document.getElementById('currentPlayer').innerHTML = player1[0];
+
+    for (var r = 0; r < 12; r++) {
+        var immediateSquare = document.getElementById('square' + [r + 1] + '_residents');
+        immediateSquare.innerHTML = "";
+    }
+
+    let square2 = ['Mediterranean Avenue', 60, 2, null, null];
+    let square3 = ['Baltic Avenue', 60, 4, null, null];
+    let square4 = ["Oriental Avenue", 100, 6, null, null];
+    let square5 = ["Vermont Avenue", 100, 6, null, null];
+    let square6 = ["Connecticut Avenue", 120, 8, null, null];
+    let square7 = ["St. Charles Place", 140, 10, null, null];
+    let square8 = ["States Avenue", 140, 10, null, null];
+    let square9 = ["Virginia Avenue", 160, 12, null, null];
+    let square10 = ["St. James Place", 180, 14, null, null];
+    let square11 = ["Tennessee Avenue", 180, 14, null, null];
+    let square12 = ["New York Avenue", 200, 16, null, null];
+    }
 

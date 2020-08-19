@@ -1,3 +1,4 @@
+
 # Monopoly
 
 Basic game of Monopoly that has only 2 players. Only component of monopoly added to the game is the buying and renting of properties.
@@ -11,3 +12,4 @@ Instructions
 6) Game will end when either player runs out of cash and loses.
 7) Attempts to buy a property with insufficient funds will automatically bankrupt you and result in a lose
 8) Press reset to restart the game.
+
