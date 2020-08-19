@@ -82,7 +82,42 @@ d.addEventListener('click', start, { once: true })
 var reset = function(){
     d.removeEventListener('click',start);
     d.addEventListener('click',start,{once:true});
+
+var player1 = ["player1",1000,property1,0,1];
+var player2 = ["player2",1000,property2,1,1];
+var players = [player1,player2];
+
+var p1 = players[0][0];
+var p2 = players[1][0];
+var k = [p1, p2];
+
+
+    document.getElementById('currentPlayer').innerHTML = player1[0];
+
+for (i=0;i<12;i++){
+var immediateSquare = document.getElementById('square' + [i+1] + '_residents');
+immediateSquare.innerHTML = "";
 }
+
+let square2 = ['Mediterranean Avenue', 60, 2, null, null];
+let square3 = ['Baltic Avenue', 60, 4, null, null];
+let square4 = ["Oriental Avenue", 100, 6, null, null];
+let square5 = ["Vermont Avenue", 100, 6, null, null ];
+let square6 = ["Connecticut Avenue", 120, 8, null, null];
+let square7 = ["St. Charles Place", 140, 10, null, null];
+let square8 = ["States Avenue", 140, 10, null, null];
+let square9 = ["Virginia Avenue", 160, 12, null, null];
+let square10 = ["St. James Place", 180, 14, null, null];
+let square11 = ["Tennessee Avenue", 180, 14, null, null];
+let square12 = ["New York Avenue", 200, 16, null, null];
+
+
+
+
+}
+
+
+
 
 document.getElementById('reset').addEventListener('click',reset);
 
@@ -131,7 +166,7 @@ var movePlayerTile = function () {
                 alert("You Paid $"+rent+" in rent sucker!")
             }
 
-            
+
 
             if (players[i][1] < 0) {
                 n.removeEventListener('click', movePlayerTile);
@@ -144,7 +179,7 @@ var movePlayerTile = function () {
 
     /*console.log(players[0],players[1])*/
 
-        case 1: 
+        case 1:
             document.getElementById('currentPlayer').innerHTML = player1[0]
             p = k
             k[i - 1] = "";
@@ -171,7 +206,7 @@ var movePlayerTile = function () {
                 if (confirm("FOR SALE @ $" + nextSquareProperty[1] + " BUYING OR NOT ???")) {
                     players[i][1] -= nextSquareProperty[1];
                 }
-                
+
             }
 
             combine = "square" + players[i][4];
@@ -206,11 +241,11 @@ var movePlayerTile = function () {
 }
 
 
-    
+
 var roll = function () {
     move = Math.ceil(Math.random() * 2);
     console.log(move + "move");
- 
+
 /*console.log(players[f][4] + "currentsquare value")*/
 
         if (players[i][4] + move <= 12) {
@@ -223,3 +258,5 @@ var roll = function () {
 }
 var n = document.getElementById('roll');
 document.getElementById('roll').addEventListener('click', movePlayerTile);
+
+
