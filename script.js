@@ -25,8 +25,8 @@ function to pay out when landing on start tile
 // currentPlayer = [position,cash,properties owned];
 
 // Updating the game board to display the name, price and rent of the location. Additionally, dynamically tracks the currentPlayer in the square and who the owner is.
-let square2 = ['Mediterranean Avenue', 60, 2, null, null];
-let square3 = ['Baltic Avenue', 60, 4, null, null];
+let square2 = ['Six Avenue', 160, 2, null, null];
+let square3 = ['Baltic Avenue', 160, 4, null, null];
 let square4 = ["Oriental Avenue", 100, 6, null, null];
 let square5 = ["Vermont Avenue", 100, 6, null, null ];
 let square6 = ["Connecticut Avenue", 120, 8, null, null];
@@ -72,9 +72,9 @@ fillBoard();
 
 //function to start the game putting players 1 and 2 in the start tile
 var start = function () {
-    document.getElementById('square1_residents').innerHTML = k;
+    document.getElementById('square1_residents').innerHTML = "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\"><img src=\"images/p2.png\" width=\"30px\" height=\"30px\">";
 }
-document.getElementById('currentPlayer').innerHTML = player1[0]
+document.getElementById('currentPlayer').innerHTML = "Player 1:" + "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">"
 
 var d = document.getElementById('start');
 
@@ -84,14 +84,14 @@ d.addEventListener('click', start, { once: true })
 var movePlayerTile = function () {
     switch (i) {
         case 0:
-            document.getElementById('currentPlayer').innerHTML = player2[0]
+            document.getElementById('currentPlayer').innerHTML = "Player 2:" + "<img src=\"images/p2.png\" width=\"30px\" height=\"30px\">"
             p = k
             k[i] = "";
             var immediateSquare = document.getElementById('square' + players[i][4] + '_residents');
 
-            if (immediateSquare.innerHTML == "player1,player2" || immediateSquare.innerHTML == "player2,player1" ) {
-                immediateSquare.innerHTML = "player2"
-            } else if ( immediateSquare.innerHTML == "player1" ){
+            if (immediateSquare.innerHTML == "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\"><img src=\"images/p2.png\" width=\"30px\" height=\"30px\">" || immediateSquare.innerHTML == "<img src=\"images/p2.png\" width=\"30px\" height=\"30px\"><img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">" ) {
+                immediateSquare.innerHTML = "<img src=\"images/p2.png\" width=\"30px\" height=\"30px\">"
+            } else if (immediateSquare.innerHTML == "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">" ){
                 immediateSquare.innerHTML = null;
             }
             //helper function takes in player, roll, as inputs
@@ -104,22 +104,25 @@ var movePlayerTile = function () {
             p[i] = "player" + [i + 1]
             nextSquare = document.getElementById('square' + players[i][4] + '_residents')
             if (nextSquare.innerHTML !== "") {
-                nextSquare.innerHTML += ",player" + [i + 1]
-            } else { nextSquare.innerHTML = [p.join("")]}
+                nextSquare.innerHTML += "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">"
+            } else { nextSquare.innerHTML = "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">"}
 
 
             combine = "square" + players[i][4];
+            cellcolor = "cell" + players[i][4] + "color";
             nextSquareProperty = eval(combine);
+            nextCellColor = eval(cellcolor);
             if (nextSquareProperty[3] === null) {
-                if (confirm("The Dice rolls either 1 or 2. You rolled " + move + " and landed on " + nextSquareProperty[0] + ". It is for sale @ $" + nextSquareProperty[1] + " Do you want to purchase it?")) {
+                if (confirm("You rolled " + move + " and landed on " + nextSquareProperty[0] + ". It is for sale @ $" + nextSquareProperty[1] + " Do you want to purchase it?")) {
                     players[i][1] -= nextSquareProperty[1];
+                    nextCellColor.innerHTML = "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">";
                     nextSquareProperty[3] = i;
                 }
 
             }
 
             if (nextSquareProperty[3] === i + 1) {
-                rent = nextSquareProperty[1] * 0.8;
+                rent = nextSquareProperty[1] * 2;
                 players[i][1] -= rent;
                 players[i+1][1] += rent
                 alert("You rolled "+ move + " and landed on " +nextSquareProperty[0] + ". It is owned by Player 2 and you paid $"+rent+ " in rent.")
@@ -129,6 +132,7 @@ var movePlayerTile = function () {
 
             if (players[i][1] < 0) {
                 n.removeEventListener('click', movePlayerTile);
+                d.removeEventListener('click', start, { once: true })
                 alert("Sorry " + "player"+(i+1) + ", you lose!");
             }
             i++;
@@ -139,13 +143,13 @@ var movePlayerTile = function () {
     /*console.log(players[0],players[1])*/
 
         case 1:
-            document.getElementById('currentPlayer').innerHTML = player1[0]
+            document.getElementById('currentPlayer').innerHTML = "Player 1:" + "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">"
             p = k
             k[i - 1] = "";
             var immediateSquare = document.getElementById('square' + players[i][4] + '_residents');
-            if (immediateSquare.innerHTML == "player1,player2" || immediateSquare.innerHTML == "player2,player1") {
-                immediateSquare.innerHTML = "player1"
-            } else if (immediateSquare.innerHTML == "player2") {
+            if (immediateSquare.innerHTML == "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\"><img src=\"images/p2.png\" width=\"30px\" height=\"30px\">" || immediateSquare.innerHTML == "<img src=\"images/p2.png\" width=\"30px\" height=\"30px\"><img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">") {
+                immediateSquare.innerHTML = "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">"
+            } else if (immediateSquare.innerHTML == "<img src=\"images/p2.png\" width=\"30px\" height=\"30px\">") {
                 immediateSquare.innerHTML = "";
             }
             //helper function takes in player, roll, as inputs
@@ -157,23 +161,26 @@ var movePlayerTile = function () {
             p[i] = "player" + [i + 1]
             nextSquare = document.getElementById('square' + players[i][4] + '_residents')
             if (nextSquare.innerHTML !== "") {
-                nextSquare.innerHTML += ",player" + [i + 1]
-            } else { nextSquare.innerHTML = [p.join("")] }
+                nextSquare.innerHTML += "<img src=\"images/p2.png\" width=\"30px\" height=\"30px\">"
+            } else { nextSquare.innerHTML = "<img src=\"images/p2.png\" width=\"30px\" height=\"30px\">" }
 
 
 
             combine = "square" + players[i][4];
+            cellcolor = "cell" + players[i][4] + "color";
             nextSquareProperty = eval(combine);
+            nextCellColor = eval(cellcolor);
             if (nextSquareProperty[3] === null) {
-                if (confirm("The Dice rolls either 1 or 2. You rolled " + move + " and landed on " + nextSquareProperty[0] + ". It is for sale @ $" + nextSquareProperty[1] + " Do you want to purchase it?")) {
+                if (confirm("You rolled " + move + " and landed on " + nextSquareProperty[0] + ". It is for sale @ $" + nextSquareProperty[1] + " Do you want to purchase it?")) {
                     players[i][1] -= nextSquareProperty[1];
+                    nextCellColor.innerHTML = "<img src=\"images/p2.png\" width=\"30px\" height=\"30px\">";
                     nextSquareProperty[3] = i;
                 }
 
             }
 
             if (nextSquareProperty[3] === i - 1) {
-                rent = nextSquareProperty[1] * 0.8
+                rent = nextSquareProperty[1] * 2;
                 players[i][1] -= rent
                 players[i-1][1] += rent
                 alert("You rolled " + move + " and landed on " + nextSquareProperty[0] + ". It is owned by Player 1 and you paid $" + rent + " in rent.")
@@ -183,6 +190,7 @@ var movePlayerTile = function () {
 
             if (players[i][1] < 0) {
                 n.removeEventListener('click', movePlayerTile);
+                d.removeEventListener('click', start, { once: true })
                 alert("Sorry " + "player"+(i+1) + ", you lose!");
             }
             i--;
@@ -196,7 +204,7 @@ var movePlayerTile = function () {
 
 //roll function that calculates the dice roll and adds it to the players stored position
 var roll = function () {
-    move = Math.ceil(Math.random() * 2);
+    move = Math.ceil(Math.random() * 6);
     console.log(move + "move");
 
 /*console.log(players[f][4] + "currentsquare value")*/
@@ -205,8 +213,8 @@ var roll = function () {
             players[i][4] += move;
         } else {
             players[i][4] += move - 12;
-            players[i][1] += 100
-            alert("$100 for passing start");
+            players[i][1] += 200
+            alert("$200 for passing start");
         }
 }
 var n = document.getElementById('roll');

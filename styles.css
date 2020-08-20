@@ -10,9 +10,9 @@
 .board_square {
     /*display:inline-block;*/
     width: 200px;
-    height: 200px;
+    height: 195px;
     background-color: #BFDBAE;
-    border: solid 1px;
+    border: solid ;
 }
 #blank1, #blank2, #blank3, #blank4, #cellturn, #lastturn, #currentstanding, #botright{
     background-color:white;
@@ -22,18 +22,24 @@
     border:solid;
 }*/
 
-#square1_name {
-    color:white;
-    font-weight:bold;
-    font-size:40px;
-    text-align:center;
-    margin:20px 0 20px 0;
+
+#square1{
+    background-image:url("images/go.jpg");
+    background-size:cover;
+    z-index:-1;
 }
+
+#square1_residents{
+    z-index:3;
+}
+
 
 body{
     font-size:20px;
     font-weight:bold;
-
+    background-image: url("images/monopolybackground.png");
+    background-size: cover;
+    justify-content: center;
 }
 
 #blank1{
@@ -65,11 +71,12 @@ body{
     position:relative;
 }
 
-#square2 div{
-    background-color:black;
-    width:100%;
-    height:45px;
-    border-bottom:solid;
+#square2 div {
+    background-color: black;
+    width: 100%;
+    height: 45px;
+    border-bottom: solid;
+    border-top: solid;
 }
 
 #square3 div {
@@ -77,6 +84,7 @@ body{
     width: 100%;
     height: 45px;
     border-bottom: solid;
+    border-top: solid;
 }
 
 #square4 div {
@@ -84,6 +92,7 @@ body{
     width: 100%;
     height: 45px;
     border-bottom: solid;
+    border-top: solid;
 }
 
 #square5 div {
@@ -91,6 +100,7 @@ body{
     width: 100%;
     height: 45px;
     border-bottom: solid;
+    border-top: solid;
 }
 
 #square6 div {
@@ -98,6 +108,7 @@ body{
     width: 100%;
     height: 45px;
     border-bottom: solid;
+    border-top: solid;
 }
 
 #square7 div {
@@ -105,6 +116,7 @@ body{
     width: 100%;
     height: 45px;
     border-bottom: solid;
+    border-top:solid;
 }
 
 #square8 div {
@@ -112,6 +124,7 @@ body{
     width: 100%;
     height: 45px;
     border-bottom: solid;
+    border-top: solid;
 }
 
 #square9 div {
@@ -119,6 +132,7 @@ body{
     width: 100%;
     height: 45px;
     border-bottom: solid;
+    border-top: solid;
 }
 
 #square10 div {
@@ -126,6 +140,7 @@ body{
     width: 100%;
     height: 45px;
     border-bottom: solid;
+    border-top: solid;
 }
 
 #square11 div {
@@ -133,6 +148,7 @@ body{
     width: 100%;
     height: 45px;
     border-bottom: solid;
+    border-top: solid;
 }
 
 #square12 div {
@@ -140,6 +156,7 @@ body{
     width: 100%;
     height: 45px;
     border-bottom: solid;
+    border-top: solid;
 }
 
 .square_name{
@@ -155,8 +172,14 @@ body{
 }
 
 .game_board, .rows{
-    margin:0px auto;
+ /*   margin:auto;*/
     padding: 0px ;
+}
+
+.game_board{
+    max-width:1000px;
+    margin:300px auto;
+    border: solid 
 }
 
 #square4, #square5, #square6{
