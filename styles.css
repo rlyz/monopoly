@@ -11,7 +11,7 @@
     /*display:inline-block;*/
     width: 200px;
     height: 195px;
-    background-color: #BFDBAE;
+    background-color: rgb(199,246,214);
     border: solid ;
 }
 #blank1, #blank2, #blank3, #blank4, #cellturn, #lastturn, #currentstanding, #botright{

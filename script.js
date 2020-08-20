@@ -73,8 +73,9 @@ fillBoard();
 //function to start the game putting players 1 and 2 in the start tile
 var start = function () {
     document.getElementById('square1_residents').innerHTML = "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\"><img src=\"images/p2.png\" width=\"30px\" height=\"30px\">";
+    document.getElementById('currentPlayer').innerHTML = "Player 1:" + "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">"
 }
-document.getElementById('currentPlayer').innerHTML = "Player 1:" + "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">"
+
 
 var d = document.getElementById('start');
 
@@ -84,17 +85,19 @@ d.addEventListener('click', start, { once: true })
 var movePlayerTile = function () {
     switch (i) {
         case 0:
+            //sets the current player
             document.getElementById('currentPlayer').innerHTML = "Player 2:" + "<img src=\"images/p2.png\" width=\"30px\" height=\"30px\">"
             p = k
             k[i] = "";
             var immediateSquare = document.getElementById('square' + players[i][4] + '_residents');
 
+            //removes the current player from the current square he's on
             if (immediateSquare.innerHTML == "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\"><img src=\"images/p2.png\" width=\"30px\" height=\"30px\">" || immediateSquare.innerHTML == "<img src=\"images/p2.png\" width=\"30px\" height=\"30px\"><img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">" ) {
                 immediateSquare.innerHTML = "<img src=\"images/p2.png\" width=\"30px\" height=\"30px\">"
             } else if (immediateSquare.innerHTML == "<img src=\"images/p1.jpg\" width=\"30px\" height=\"30px\">" ){
                 immediateSquare.innerHTML = null;
             }
-            //helper function takes in player, roll, as inputs
+
             roll();
             document.getElementById('lastturnmsg').textContent = "Dice Rolled " + move;
             for (g = 0; g < p.length; g++) {
@@ -222,7 +225,7 @@ document.getElementById('roll').addEventListener('click', movePlayerTile);
 
 
 //Reset function that reassigns all initial variables and states
-var reset = function () {
+/*var reset = function () {
     d.removeEventListener('click', start);
     d.addEventListener('click', start, { once: true });
 
@@ -254,4 +257,4 @@ var reset = function () {
     let square11 = ["Tennessee Avenue", 180, 14, null, null];
     let square12 = ["New York Avenue", 200, 16, null, null];
     }
-
+*/
